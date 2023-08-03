@@ -1,33 +1,17 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
+const {logger} = require("firebase-functions");
 const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+const {initializeApp} = require("firebase-admin/app");
+const {getFirestore} = require("firebase-admin/firestore");
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+initializeApp();
 
-const express = require('express')
-const app = express()
-const port = 3000
-
-app.post('/', (req, res) => {
-    console.log(req.body)
-    res.send('Hello World!')
-})
+exports.addmessage = onRequest(async (req, res) => {
+  const original = req.query.text;
   
+  const writeResult = await getFirestore()
+      .collection("messages")
+      .add({original: original});
 
-app.listen(port, ()=>{
-    console.log("Running at: "+port);
-})
+  res.json({result: `Message with ID: ${writeResult.id} added.`});
+});

@@ -1,7 +1,7 @@
-const btn = document.querySelector('#submit');
-const form = document.querySelector('#login');
-
-const EP = "http://localhost:3000/"
+const btn = document.querySelector('#submit-sign-up');
+const form = document.querySelector('#sign-up');
+const pwdm = document.querySelector('#passwords-dont-match')
+pwdm.style.display = 'none';
 
 btn.addEventListener('click', (e) => {
     // prevent the form from submitting
@@ -12,11 +12,12 @@ btn.addEventListener('click', (e) => {
     const values = [...formData.entries()];
     console.log(values);
 
-    fetch(EP,{
-        method: "POST",
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        },
-        body: JSON.stringify(values)
-    })
+    if(values[1][1] === values[2][1]){
+        console.log("passwords match");
+        pwdm.style.display = 'none';
+        // begin auth
+    }
+    else{
+        pwdm.style.display = "block";
+    }
 });

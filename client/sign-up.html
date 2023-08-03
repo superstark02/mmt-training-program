@@ -14,7 +14,7 @@
         <div class="w-full py-4 px-8 text-2xl font-bold app-bar shadow-md" >
             AppBar
         </div>
-        <form id="login" >
+        <form id="sign-up">
             <div class="main-container" >
                 <div class="child-container-l1 rounded-lg py-4 px-12" >
 
@@ -45,12 +45,16 @@
                             Confirm Password
                         </div>
                         <div>
-                            <input name="password" type="password" placeholder="Passwrod" />
+                            <input name="confirm-password" type="password" placeholder="Passwrod" />
                         </div>
                     </div>
 
+                    <div class="text-red-500 text-center text-xs" id="passwords-dont-match" >
+                        Passwords don't match
+                    </div>
+
                     <div class="my-2 flex justify-center" >
-                        <input id="submit" class="px-2" type="submit" value="Submit" />
+                        <input class="px-2" type="submit" value="Submit" id="submit-sign-up" />
                     </div>
 
                     <hr/>
