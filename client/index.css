@@ -6,9 +6,9 @@
 }
 
 input{
-    padding: 10px;
     border: 1px solid black;
     border-radius: 3px;
+    padding: 20px;
 }
 
 .child-container-l1, .footer{
